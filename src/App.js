@@ -6,6 +6,7 @@ import './App.css';
 import FormText from './components/FormText';
 import Navbar from './components/Navbar';
 import Alert from './components/Alert';
+import Footer from './components/Footer';
 
 function App() {
   const [mode,setmode] = useState('light')
@@ -43,7 +44,9 @@ function App() {
       <div className="container my-5">
         <FormText mode={mode} showAlert={showAlert}></FormText>
         {/* <About /> */}
+       
       </div>
+      <Footer mode={mode}/>
     </>
   );
 }
