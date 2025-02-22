@@ -2,7 +2,8 @@
 import React from 'react'
 import { useState } from 'react';
 import './App.css';
-// import About from './components/About';
+import { Routes, Route } from "react-router";
+import About from './components/About';
 import FormText from './components/FormText';
 import Navbar from './components/Navbar';
 import Alert from './components/Alert';
@@ -39,14 +40,17 @@ function App() {
  
   return (
     <> 
-      <Navbar title="TextManip" about="About" mode={mode} toggleMode={toggleMode}/>
-      <Alert myAlert={myAlert}/>
-      <div className="container my-5">
-        <FormText mode={mode} showAlert={showAlert}></FormText>
-        {/* <About /> */}
-       
-      </div>
-      <Footer mode={mode}/>
+      
+        <Navbar title="TextManip" about="About" mode={mode} toggleMode={toggleMode}/>
+        <Alert myAlert={myAlert}/>
+          <div className="container my-5">
+          <Routes>
+            <Route exact path="/" element={<FormText mode={mode} showAlert={showAlert}></FormText>} />
+            <Route exact path="/About" element={<About mode={mode} />} />
+          </Routes>
+          </div>
+        <Footer mode={mode} className="position-absolute"/>
+      
     </>
   );
 }
