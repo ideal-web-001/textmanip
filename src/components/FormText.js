@@ -2,47 +2,49 @@ import React, { useState } from 'react'
 
 export default function FormText(props) {
 
+    const [text,setText]= useState("");
+
 // function to convert upper case...... 
     const uppercase=()=>{
         if(text.length===0){
-            props.showAlert(":Enter something first !!","warning")
+            props.showAlert(": Enter something first !!","warning")
         }
         else{
             let newText=text.toUpperCase();
             setText(newText);
-            props.showAlert(":Converted into UPPERCASE !!","success")
+            props.showAlert(": Converted into UPPERCASE !!","success")
         }
 
 }
 // function to convert in uppercse........
 const lowecase=()=>{
     if(text.length===0){
-        props.showAlert(":Enter something first !!","warning")
+        props.showAlert(": Enter something first !!","warning")
     }
     else{
         let t=text.toLowerCase();
         setText(t);
-        props.showAlert(":Converted into lowercase !!","success")
+        props.showAlert(": Converted into lowercase !!","success")
     }
    
 
 }
 const titleCase=()=>{
     if(text.length===0){
-        props.showAlert(":Enter something first !!","warning")
+        props.showAlert(": Enter something first !!","warning")
  
     }
     else{
         let temp=text.toLowerCase();
         temp=temp.split(" ").map((element)=>element.charAt(0).toUpperCase()+ element.slice(1)).join(" ")
         setText(temp)
-        props.showAlert(":Converted into lowercase !!","success")
+        props.showAlert(": Converted into lowercase !!","success")
     }
     
 }
 const sentenceCase=()=>{
     if(text.length===0){
-        props.showAlert("Enter something first !!","warning")
+        props.showAlert(": Enter something first !!","warning")
     }
     else{
         let temp=text.toLowerCase();
@@ -65,7 +67,7 @@ const textchange=(event)=>{
     setText(event.target.value);
 }
 
-   const [text,setText]= useState("");
+
 //    let words=text.split(' ').length;
     return (
     
@@ -85,11 +87,18 @@ const textchange=(event)=>{
         </div>
         <div className={`container text-${props.mode==='light'?'dark':'light'} text-center`}>
             <h3><u>Text Summary</u></h3>
+            
+                <h6 className="">
+                    Words: {text.split(/\s+/).filter((element)=>element!=="").length} |
+                    Characters: {text.length} | 
+                    Sentence: {text.split(". ").filter((element)=>element!=='').length}
+                </h6>
+           
+            <h3 >
+                    <u>Preview:</u>
+                </h3>
             <p>
-            <h6 className="">Words: {text.split(" ").filter((element)=>element!=="").length} | Characters: {text.length} | Sentence: {text.split(". ").filter((element)=>element!=='').length}</h6>
-            </p>
-            <p>
-                <h3 ><u>Preview:</u></h3>
+                
                 {text.length>0?text:'Type somthing Above to preview here'}
             </p>
         </div>
